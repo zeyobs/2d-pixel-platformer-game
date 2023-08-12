@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+    public UnityEvent<int, Vector2> damageableHit;
+
     Animator animator;
     [SerializeField]
     private int _maxHealth = 100;
@@ -29,7 +32,7 @@ public class Damageable : MonoBehaviour
         {
             _health = value;
             //if health drops below 0, the character is no longer alive
-            if (_health < 0)
+            if (_health <= 0)
             {
                 IsAlive = false;
             }
@@ -56,6 +59,18 @@ public class Damageable : MonoBehaviour
             Debug.Log("IsAlive set " + value);
         }
     }
+    public bool LockVelocity
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.lockVelocity);
+
+        }
+        set
+        {
+            animator.SetBool(AnimationStrings.lockVelocity, value);
+        }
+    }
 
     private void Awake()
     {
@@ -64,7 +79,8 @@ public class Damageable : MonoBehaviour
 
     private void Update()
     {
-        if (isInvincible) { 
+        if (isInvincible)
+        {
             if (timeSinceHit > invincibilityTime)
             {
                 // remove invincibility
@@ -73,15 +89,25 @@ public class Damageable : MonoBehaviour
             }
             timeSinceHit += Time.deltaTime;
         }
-        Hit(10);
     }
-    public void Hit(int damage)
+
+    // returns whether the damageable took the damage or not  
+    public bool Hit(int damage, Vector2 knockback)
     {
         if (IsAlive && !isInvincible)
         {
             Health -= damage;
             isInvincible = true;
+
+            //notify other subcribed components that the damageable was hit to handle the knockback
+            animator.SetTrigger(AnimationStrings.hitTrigger);
+            LockVelocity = true;
+            damageableHit?.Invoke(damage, knockback);
+            return true;
+
         }
+        // unable to hit
+        return false;
     }
 
 }
