@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
 
+
     Vector2 moveInput;
     TouchingDirections touchingDirections;
 
@@ -42,11 +43,12 @@ public class PlayerController : MonoBehaviour
                     // Idle speed
                     return 0;
                 }
-            } else
+            }
+            else
             {   // movement locked
                 return 0;
             }
-            
+
         }
     }
     [SerializeField]
@@ -97,13 +99,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool CanMove { get
+    public bool CanMove
+    {
+        get
 
         {
             return animator.GetBool(AnimationStrings.canMove);
         }
     }
 
+    public bool IsAlive
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
     Rigidbody2D rb;
     Animator animator;
 
@@ -123,9 +134,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+
         moveInput = context.ReadValue<Vector2>();
-        IsMoving = moveInput != Vector2.zero;
-        setFacingDirection(moveInput);
+        if (IsAlive)
+        {
+            IsMoving = moveInput != Vector2.zero;
+
+            setFacingDirection(moveInput);
+        }
+        else
+        {
+            IsMoving = false;
+        }
+
     }
 
     private void setFacingDirection(Vector2 moveInput)
@@ -163,7 +184,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.started && touchingDirections.IsGrounded)
+        if (context.started && touchingDirections.IsGrounded)
         {
             Debug.Log("Attack Triggered");
             animator.SetTrigger(AnimationStrings.attack);
