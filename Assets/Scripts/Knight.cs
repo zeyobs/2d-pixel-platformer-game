@@ -7,13 +7,13 @@ public class Knight : MonoBehaviour
     public float walkSpeed = 3f;
     public float walkStopRate = 0.1f;
     public DetectionZone attackZone;
+    public DetectionZone cliffDetectionZone;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
     Animator animator;
     Damageable damageable;
     public enum WalkableDirection { Right, Left }
-
 
     private WalkableDirection _walkDirection;
     private Vector2 walkDirectionVector = Vector2.right;
@@ -67,6 +67,17 @@ public class Knight : MonoBehaviour
         }
     }
 
+    public float AttackCooldown { get
+        {
+            return animator.GetFloat(AnimationStrings.attackCooldown);
+        }
+
+
+            private set {
+            animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -78,6 +89,12 @@ public class Knight : MonoBehaviour
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
+
+        if (AttackCooldown > 0) {
+
+            AttackCooldown -= Time.deltaTime;
+
+        }
     }
 
     void FixedUpdate()
@@ -113,5 +130,16 @@ public class Knight : MonoBehaviour
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
+
+    public void OnCliffDetected()
+    {
+        Debug.Log("OnCliffDetected called.");
+        if (touchingDirections.IsGrounded || cliffDetectionZone.detectedColliders.Count == 0)
+        {
+            FlipDirection();
+            Debug.Log("Cliff Detected");
+        }
+    }
+
 }
 
