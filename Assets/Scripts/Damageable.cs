@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.TextCore.Text;
 
 public class Damageable : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class Damageable : MonoBehaviour
     {
         get
         {
-            return maxHealth;
+            return _maxHealth;
         }
 
         set
@@ -112,5 +111,19 @@ public class Damageable : MonoBehaviour
         return false;
     }
 
+    // returns whether the character was healed or not
+    public bool Heal(int healthRestore)
+    {
+
+        if (IsAlive && Health < maxHealth)
+        {
+            int maxHeal = Mathf.Max(maxHealth - Health, 0);
+            int actualHeal = Mathf.Min(maxHeal, healthRestore);
+            Health += actualHeal;
+            CharacterEvents.characterHealed.Invoke(gameObject, actualHeal);
+            return true;
+        }
+        return false;
+    }
 }
 

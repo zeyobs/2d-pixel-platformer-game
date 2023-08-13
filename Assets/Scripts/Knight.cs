@@ -133,11 +133,9 @@ public class Knight : MonoBehaviour
 
     public void OnCliffDetected()
     {
-        Debug.Log("OnCliffDetected called.");
         if (touchingDirections.IsGrounded || cliffDetectionZone.detectedColliders.Count == 0)
         {
             FlipDirection();
-            Debug.Log("Cliff Detected");
         }
     }
 
