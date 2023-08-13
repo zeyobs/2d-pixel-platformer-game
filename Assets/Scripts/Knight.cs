@@ -4,8 +4,9 @@ using static UnityEngine.Rendering.DebugUI;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
+    public float walkAcceleration = 50f;
     public float walkSpeed = 3f;
-    public float walkStopRate = 0.1f;
+    public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
 
@@ -106,7 +107,10 @@ public class Knight : MonoBehaviour
         if (!damageable.LockVelocity)
         {
             if (CanMove)
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                //accelerate towards max speed
+               
+                rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
+                    -walkSpeed, walkSpeed), rb.velocity.y);
             else
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
         }
