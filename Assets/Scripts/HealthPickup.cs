@@ -23,6 +23,11 @@ public class HealthPickup : MonoBehaviour
             bool wasHealed = damageable.Heal(healthRestore);
             if (wasHealed) 
                 Destroy(gameObject);
+            Debug.Log("HealthPickup destroyed");
+        }
+        else
+        {
+            Debug.Log("Healing not possible, HealthPickup not destroyed");
         }
     }
 
