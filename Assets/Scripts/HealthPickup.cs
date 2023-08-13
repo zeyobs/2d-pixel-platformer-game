@@ -7,6 +7,7 @@ public class HealthPickup : MonoBehaviour
 
     public int healthRestore = 20;
     public Vector3 spinRotationSpeed = new Vector3(0, 180, 0);
+    private bool hasBeenUsed = false;
 
 
     // Start is called before the first frame update
@@ -21,13 +22,16 @@ public class HealthPickup : MonoBehaviour
         if (damageable)
         {
             bool wasHealed = damageable.Heal(healthRestore);
-            if (wasHealed) 
+
+            if (wasHealed)
+            {
                 Destroy(gameObject);
-            Debug.Log("HealthPickup destroyed");
-        }
-        else
-        {
-            Debug.Log("Healing not possible, HealthPickup not destroyed");
+                Debug.Log("HealthPickup destroyed");
+            }
+            else
+            {
+                Debug.Log("Healing not possible, HealthPickup not destroyed");
+            }
         }
     }
 

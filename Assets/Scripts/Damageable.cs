@@ -18,7 +18,7 @@ public class Damageable : MonoBehaviour
 
         set
         {
-            _maxHealth = value;
+            _maxHealth = value;  
         }
     }
     [SerializeField]
@@ -87,9 +87,9 @@ public class Damageable : MonoBehaviour
     {
         if (isInvincible)
         {
-            if (timeSinceHit > invincibilityTime)
+            if (timeSinceHit >= invincibilityTime)
             {
-                // remove invincibility
+                // Remove invincibility
                 isInvincible = false;
                 timeSinceHit = 0;
             }
@@ -126,7 +126,7 @@ public class Damageable : MonoBehaviour
             int maxHeal = Mathf.Max(maxHealth - Health, 0);
             int actualHeal = Mathf.Min(maxHeal, healthRestore);
             Health += actualHeal;
-            CharacterEvents.characterHealed.Invoke(gameObject, actualHeal);
+            CharacterEvents.characterHealed(gameObject, actualHeal);
             return true;
         }
         return false;
