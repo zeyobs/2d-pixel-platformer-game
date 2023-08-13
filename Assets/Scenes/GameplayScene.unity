@@ -5564,7 +5564,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 9, y: -5, z: 0}
+  - first: {x: 8, y: -5, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 15
@@ -9375,17 +9375,17 @@ CompositeCollider2D:
         Y: -20000000
       - X: 116250000
         Y: -20000000
-    - - X: 100000000
+    - - X: 90000000
         Y: -48750000
-      - X: 100000000
-        Y: -40000000
       - X: 90000000
         Y: -40000000
-      - X: 90000000
+      - X: 80000000
+        Y: -40000000
+      - X: 80000000
         Y: -48750000
-      - X: 90625000
+      - X: 80625000
         Y: -50000000
-      - X: 98750000
+      - X: 88750000
         Y: -50000000
   m_CompositePaths:
     m_Paths:
@@ -9429,12 +9429,12 @@ CompositeCollider2D:
       - {x: 9.000003, y: -1.3750055}
       - {x: 9.187507, y: -1.7500036}
       - {x: 9.625007, y: -2}
-    - - {x: 9.874989, y: -5}
-      - {x: 10, y: -4.874989}
-      - {x: 9.99997, y: -4}
-      - {x: 9, y: -4.000029}
-      - {x: 9.000003, y: -4.8750057}
-      - {x: 9.062517, y: -5}
+    - - {x: 8.874989, y: -5}
+      - {x: 9, y: -4.874989}
+      - {x: 8.99997, y: -4}
+      - {x: 8, y: -4.000029}
+      - {x: 8.000003, y: -4.8750057}
+      - {x: 8.062517, y: -5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -13982,7 +13982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7045404222307766057, guid: f72d04451fe168149b0daccabe7f5416, type: 3}
       propertyPath: walkStopRate
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7045404222307766057, guid: f72d04451fe168149b0daccabe7f5416, type: 3}
       propertyPath: walkAcceleration

@@ -192,8 +192,15 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && touchingDirections.IsGrounded)
         {
-            Debug.Log("Attack Triggered");
-            animator.SetTrigger(AnimationStrings.attack);
+            animator.SetTrigger(AnimationStrings.attackTrigger);
+        }
+    }
+
+    public void OnRangedAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && touchingDirections.IsGrounded)
+        {
+            animator.SetTrigger(AnimationStrings.rangedAttackTrigger);
         }
     }
 
