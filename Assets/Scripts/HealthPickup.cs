@@ -7,7 +7,6 @@ public class HealthPickup : MonoBehaviour
 
     public int healthRestore = 20;
     public Vector3 spinRotationSpeed = new Vector3(0, 180, 0);
-    private bool hasBeenUsed = false;
 
 
     // Start is called before the first frame update

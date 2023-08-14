@@ -314,6 +314,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageableDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 100
   _health: 100
   _isAlive: 1
@@ -345,7 +351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6093367900717822768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.91, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -365,7 +371,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -377,20 +383,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.4227241, y: 0.9160483}
-      - {x: 0.07022414, y: 1.2018658}
-      - {x: -0.49004716, y: 1.4260143}
+    - - {x: 0.3761623, y: 0.9160483}
+      - {x: 0.07022405, y: 1.2018658}
+      - {x: -0.49004722, y: 1.4260143}
       - {x: -1.5574715, y: 1.4404124}
       - {x: -1.8432541, y: 1.2342676}
       - {x: -1.5098106, y: 0.81826276}
       - {x: -1.5005186, y: 0.3544658}
       - {x: -1.4796199, y: 0.17751884}
       - {x: -1.3656938, y: -0.074765444}
-      - {x: -0.94228464, y: -0.547807}
+      - {x: -0.9422846, y: -0.547807}
       - {x: -0.38210678, y: -0.79786575}
-      - {x: 0.58778536, y: -1.0311291}
-      - {x: 0.78849494, y: -0.31802487}
-      - {x: 0.64130855, y: 0.4204873}
+      - {x: 0.58778524, y: -1.0311291}
+      - {x: 0.72863007, y: -0.3379799}
+      - {x: 0.56814027, y: 0.41383561}
   m_UseDelaunayMesh: 0
 --- !u!114 &5374660592819793289
 MonoBehaviour:
